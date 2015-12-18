@@ -129,8 +129,9 @@ func ActivateAddress(blockchainId string, address string, passphrase string, amo
 	type genericMap map[string]interface{}
 
 	var send = map[string]interface{}{
-		"address": address,
-		"amount":  amountOfTransactionsToActivate,
+		"blockchainId": blockchainId,
+		"address":      address,
+		"amount":       amountOfTransactionsToActivate,
 	}
 
 	if passphrase != "" {
