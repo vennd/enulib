@@ -190,14 +190,14 @@ func CreateWallet(blockchainId string) (Wallet, *EnuError) {
 	return wallet, nil
 }
 
-func CreateAsset(passphrase string, sourceAddress string, distributionAddress string, distributionAddressPassphrase string, asset string, quantity uint64, divisible bool, blockchain string) (Asset, *EnuError) {
+func CreateAsset(passphrase string, issuerAddress string, distributionAddress string, distributionAddressPassphrase string, asset string, quantity uint64, divisible bool, blockchain string) (Asset, *EnuError) {
 	var assetStruct Asset
 
 	// Make URL from base URL
 	var url = baseURL() + "/asset"
 	var send = map[string]interface{}{
 		"passphrase":             passphrase,
-		"sourceAddress":          sourceAddress,
+		"sourceAddress":          issuerAddress,
 		"distributionAddress":    distributionAddress,
 		"distributionPassphrase": distributionAddressPassphrase,
 		"asset":                  asset,
