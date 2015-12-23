@@ -115,7 +115,7 @@ func DoEnuAPI(method string, url string, postData []byte) ([]byte, *EnuError) {
 		return body, &EnuError{ErrCode: 13, Err: err}
 	}
 
-//	log.Printf("Reply: %s\n", string(body))
+	//	log.Printf("Reply: %s\n", string(body))
 
 	return body, nil
 }
