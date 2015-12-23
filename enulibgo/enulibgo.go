@@ -161,17 +161,19 @@ func ActivateAddress(blockchainId string, address string, passphrase string, amo
 
 // Creates a wallet on the specified blockchain
 // blockchainId may be set to an empty string "" if you wish to use your default blockchain
-func CreateWallet(blockchainId string) (Wallet, *EnuError) {
-	var basicRequest BasicRequest
+func CreateWallet(blockchainId string, numberOfAddresses uint64) (Wallet, *EnuError) {
 	var wallet Wallet
 
 	// Set parameters
 	var url = baseURL() + "/wallet"
-	basicRequest.BlockchainId = blockchainId
-	basicRequest.Nonce = GetNonce()
+	var send = map[string]interface{}{
+		"blockchainId":      blockchainId,
+		"nonce":             GetNonce(),
+		"numberOfAddresses": numberOfAddresses,
+	}
 
 	// Marshall to json
-	jsonBytes, err := json.Marshal(basicRequest)
+	jsonBytes, err := json.Marshal(send)
 	if err != nil {
 		return wallet, &EnuError{ErrCode: 13, Err: err}
 	}
